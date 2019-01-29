@@ -107,10 +107,113 @@ listaPrecos[0].padEnd(10, '.');   // R$ 99.....
 // STR.REPLACE(REGEXP|SUBSTR, NEWSTR|FUNCTION) : Troca parte da string por outra. Podemos utilizar uma regular expression ou um valor direto. Se usarmos um valor direto ele irá trocar apenas o primeiro valor que encontrar.
 // Ex:
 
-let listaItens = 'Camisas Bonés Calças Bermudas Vestidos Saias';
-listaItens = listaItens.replace(/[ ]+/g, ', ');
+// let listaItens = 'Camisas Bonés Calças Bermudas Vestidos Saias';
+// listaItens = listaItens.replace(/[ ]+/g, ', ');
 
-// Ex 2:
-let preco = 'R$ 1200,43';
-preco = preco.replace(',', '.'); // 'R$ 1200.43'
+// // Ex 2:
+// let preco = 'R$ 1200,43';
+// preco = preco.replace(',', '.'); // 'R$ 1200.43'
+
+
+// STR.SPLIT(PADRAO) : Divide a string de acordo com o padrão passado e retorna uma array.
+
+// Ex1:
+const listaItens = 'Camisas Bonés Calças Bermudas Vestidos Saias';
+const arrayItens = listaItens.split(' '); //quebra a array sempre que tiver um espaço
+
+// Ex2:
+const htmlText = '<div>O melhor item</div><div>A melhor lista</div>';
+const htmlArray = htmlText.split('div'); //quebra a array sempre que tiver uma div
+const htmlNovo = htmlArray.join('section'); //com o método de join, da pra substituir o que foi retirado com split.
+
+
+// STR.TOLOWERCASE() E STR.TOUPPERCASE() : Retorna a string em letras maiúsculas ou minúsculas. Bom para verificarmos input de usuários.
+// Ex:
+
+const sexo1 = 'Feminino';
+const sexo2 = 'feminino';
+const sexo3 = 'FEMININO';
+
+//verificando:
+(sexo1.toLowerCase() === 'feminino'); // true
+(sexo2.toLowerCase() === 'feminino'); // true
+(sexo3.toLowerCase() === 'feminino'); // true
+
+
+
+// STR.TRIM(), STR.TRIMSTART(), STR.TRIMEND() : Remove espaço em branco do início ou final de uma string.
+// Ex:
+
+const valor = '  R$ 23.00   ' 
+valor.trim(); // 'R$ 23.00'
+valor.trimStart(); // 'R$ 23.00   '
+valor.trimEnd(); // '  R$ 23.00'
+
+
+
+// EXERCÍCIOS:
+
+// Utilizando o foreach na array abaixo, some os valores de Taxa e os valores de Recebimento
+
+const transacoes = [
+  {
+    descricao: 'Taxa do Pão',
+    valor: 'R$ 39',
+  },
+  {
+    descricao: 'Taxa do Mercado',
+    valor: 'R$ 129',
+  },
+  {
+    descricao: 'Recebimento de Cliente',
+    valor: 'R$ 99',
+  },
+  {
+    descricao: 'Taxa do Banco',
+    valor: 'R$ 129',
+  },
+  {
+    descricao: 'Recebimento de Cliente',
+    valor: 'R$ 49',
+  },
+];
+
+
+let soma = 0;
+transacoes.forEach((item) => {
+  //dividindo a variavel em duas
+  let transacoesSemCifrao = item.valor.split(' ');
+  // pegando somente a parte do numero
+  let getNumber = transacoesSemCifrao[1];
+  //transformando o numero em um valor inteiro
+  getNumber = parseInt(getNumber)
+  // somando o numero a varialvel determinada a receber a soma dos valores
+  soma += getNumber;
+})
+// colocando na tela: 
+let divSomaTotal = document.querySelector('#somaTotal');
+divSomaTotal.innerHTML = 'R$ ' + soma + ',00';
+
+
+
+
+
+// Retorne uma array com a lista abaixo
+// const transportes = 'Carro;Avião;Trem;Ônibus;Bicicleta';
+
+// // Substitua todos os span's por a's
+// const html = `<ul>
+//                 <li><span>Sobre</span></li>
+//                 <li><span>Produtos</span></li>
+//                 <li><span>Contato</span></li>
+//               </ul>`;
+
+// // Retorne o último caracter da frase
+// const frase = 'Melhor do ano!';
+
+
+// // Retorne o total de taxas
+// const transacoes = ['Taxa do Banco', '   TAXA DO PÃO', '  taxa do mercado', 'depósito Bancário', 'TARIFA especial'];
+
+
 
