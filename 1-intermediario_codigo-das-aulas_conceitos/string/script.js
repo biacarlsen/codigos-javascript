@@ -153,7 +153,7 @@ valor.trimEnd(); // '  R$ 23.00'
 
 // EXERCÍCIOS:
 
-// Utilizando o foreach na array abaixo, some os valores de Taxa e os valores de Recebimento
+// 1 - Utilizando o foreach na array abaixo, some os valores de Taxa e os valores de Recebimento
 
 const transacoes = [
   {
@@ -178,6 +178,7 @@ const transacoes = [
   },
 ];
 
+// R:
 
 let soma = 0;
 transacoes.forEach((item) => {
@@ -192,28 +193,104 @@ transacoes.forEach((item) => {
 })
 // colocando na tela: 
 let divSomaTotal = document.querySelector('#somaTotal');
-divSomaTotal.innerHTML = 'R$ ' + soma + ',00';
+divSomaTotal.innerHTML = 'A soma dos valores de taxa com os valores de recebimento é de: ' + 'R$ ' + soma + ',00';
+
+// OBS: Com esse código que eu fiz eu somei todos os valores de taxas com os valores de recebimento. 
+
+// O professor fez de outra forma - somou todos os valores de taxa  e depois somou todos os valores de recebimento. 
+
+// lógica passo a passo:
+// 1 - Loop em cada item da array usando foreach;
+// 2 - definir o valor inicial de taxaTotal;
+// 3- verificar se na descrição do item começa com 'taxa';
+// 4 - Se o valor for verdadeiro, somar com taxaTotal;
+// 5 - limpar strings cortando o R$;
+// 6 - transformar string em number com o + na frente (isso só funciona se a string tiver somente numeros);
+// 7 - somar os valores de recebimento total no else if da verificação anterior;
+// 8 - definir o valor inicial de recebimentoTotal;
+
+// Segue códigos com seus respectivos passos:
+
+// // passo 2:
+// let taxaTotal = 0;
+// // passo 8:
+// let recebimentoTotal = 0;
+// // passo 1:
+// transacoes.forEach((item) => {
+//   // passo 5 e 6:
+//   const numeroLimpo = +item.valor.replace('R$ ', '');
+//   // passo 3:
+//   if(item.descricao.slice(0, 4) === 'Taxa') {
+//   // passo 4:
+//   taxaTotal += numeroLimpo; //isso é a mesma coisa que isso: taxaTotal = taxaTotal + numeroLimpo;
+//   // passo 7: 
+// } else if(item.descricao.slice(0, 4) === 'Rece') {
+//   recebimentoTotal += numeroLimpo;
+//   }
+// })
+// // mostrar no console os valores somados:
+// console.log(taxaTotal);
+// console.log(recebimentoTotal);
 
 
 
+//2- Retorne uma array com a lista abaixo:
+
+const transportes = 'Carro;Avião;Trem;Ônibus;Bicicleta';
+
+// R: 
+const transportesArray = transportes.split(';');
+console.log(transportesArray);
 
 
-// Retorne uma array com a lista abaixo
-// const transportes = 'Carro;Avião;Trem;Ônibus;Bicicleta';
+//3- Substitua todos os span's por a's
+const html = `<ul>
+                <li><span>Sobre</span></li>
+                <li><span>Produtos</span></li>
+                <li><span>Contato</span></li>
+              </ul>`;
 
-// // Substitua todos os span's por a's
-// const html = `<ul>
-//                 <li><span>Sobre</span></li>
-//                 <li><span>Produtos</span></li>
-//                 <li><span>Contato</span></li>
-//               </ul>`;
-
-// // Retorne o último caracter da frase
-// const frase = 'Melhor do ano!';
+// R:
+const htmlArray2 = html.split('span');
+const htmlComLink = htmlArray2.join('a');
+console.log(htmlComLink);
 
 
-// // Retorne o total de taxas
-// const transacoes = ['Taxa do Banco', '   TAXA DO PÃO', '  taxa do mercado', 'depósito Bancário', 'TARIFA especial'];
+// 4- Retorne o último caracter da frase
+const frase2 = 'Melhor do ano!';
+
+// R:
+console.log(frase2[frase2.length - 1]);
+
+
+// 5- Retorne o total de taxas
+
+const transacoes2 = ['Taxa do Banco', '   TAXA DO PÃO', '  taxa do mercado', 'depósito Bancário', 'TARIFA especial'];
+// R:
+
+// lógica passo a passo:
+// 1 - pegar cada item com o foreach;
+// 2 - limpar valores pra que todos fiquem iguais;
+// 3 - somar as taxas fazendo verificação - se for igual a taxa;
+// 4 - definir valor inicial de taxasTotal;
+
+// segue código com seus respectivos passos:
+
+// passo 4:
+let taxasTotal = 0;
+// passo 1:
+transacoes2.forEach((item) => {
+  // passo 2:
+  item = item.toLocaleLowerCase(); //letras minúsculas
+  item = item.trim(); //limpar espaços
+  item = item.slice(0, 4); //retonar apenas as iniciais
+
+  // passo 3:
+  if(item === 'taxa') {
+    taxasTotal++
+  }
+})
+console.log(taxasTotal);
 
 
 
