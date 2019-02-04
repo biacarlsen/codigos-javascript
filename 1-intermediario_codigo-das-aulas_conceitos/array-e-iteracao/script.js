@@ -350,35 +350,44 @@ const aulasMaiores = aulas4.filter((aula) => {
 
 // EXERCÍCIOS
 
-{/* <section class="curso">
-  <h1>Web Design Completo</h1>
-  <p>Este curso é para quem deseja entrar ou já está no mercado de criação de websites.</p>
-  <span class="aulas">80</span>
-  <span class="horas">22</span>
-</section>
-<section class="curso">
-  <h1>WordPress Como CMS</h1>
-  <p>No curso de WordPress Como CMS, você aprende do zero como pegar qualquer site em HTML e torná-lo totalmente gerenciável com a plataforma do WordPress.</p>
-  <span class="aulas">46</span>
-  <span class="horas">9</span>
-</section>
-<section class="curso">
-  <h1>UI Design Avançado</h1>
-  <p>Este é um curso avançado de User Interface Design.</p>
-  <span class="aulas">55</span>
-  <span class="horas">15</span>
-</section> */}
-
 // 1-
 // Selecione cada curso e retorne uma array com objetos contendo o título, descricao, aulas e horas de cada curso
+
+// R:
+const cursos = document.querySelectorAll('.curso');
+const arrayCursos = Array.from(cursos);
+
+const objetosCurso = arrayCursos.map((item) => {
+  const titulo = item.querySelector('h1').innerText;
+  const descricao = item.querySelector('p').innerText;
+  const aulas = item.querySelector('.aulas').innerText;
+  const horas = item.querySelector('.horas').innerText;
+  return {
+    titulo,
+    descricao,
+    aulas,
+    horas
+  }
+})
+objetosCurso;
 
 // 2-
 // Retorne uma lista com os números maiores que 100
 const numeros8 = [3, 44, 333, 23, 122, 322, 33];
 
+// R:
+const numeroMaior100 = numeros8.filter((item) => { 
+  return item > 100;
+});
+
 // 3-
 // Verifique se Baixo faz parte da lista de instrumentos e retorne true
 const instrumentos = ['Guitarra', 'Baixo', 'Bateria', 'Teclado']
+
+// R:
+const temBaixo = instrumentos.some((item) => {
+  return item === 'Baixo';
+});
 
 // 4-
 // Retorne o valor total das compras
@@ -404,3 +413,11 @@ const compras = [
     preco: 'R$ 10,60'
   }
 ]
+
+// R:
+
+const valorTotal = compras.reduce((acumulador, item) => {
+  const precoLimpo = +item.preco.replace('R$ ', '').replace(',', '.');
+  return acumulador + precoLimpo;
+}, 0)
+console.log(valorTotal);
